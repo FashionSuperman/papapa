@@ -1,0 +1,241 @@
+cc.Class({
+    extends: cc.Component,
+
+    properties: {
+        // foo: {
+        //    default: null,      // The default value will be used only when the component attaching
+        //                           to a node for the first time
+        //    url: cc.Texture2D,  // optional, default is typeof default
+        //    serializable: true, // optional, default is true
+        //    visible: true,      // optional, default is true
+        //    displayName: 'Foo', // optional
+        //    readonly: false,    // optional, default is false
+        // },
+        // ...
+        track : 0,
+        back : {
+            type:cc.Node,
+            default:null
+        },
+        human : {
+            type:cc.Node,
+            default:null
+        },
+        leftPadding : 60,
+        limit : false,
+        ypos:0,
+        zhexianFlag:1,
+        zhexianLimit : 60,
+
+        hand1:{
+            type:cc.Node,
+            default:null
+        },
+
+        hand2:{
+            type:cc.Node,
+            default:null
+        },
+
+        hand : {
+            type:cc.Node,
+            default:null
+        }
+    },
+
+    // use this for initialization
+    onLoad: function () {
+        this.noAction = true;
+        this.ypos = this.node.y;
+
+        //获取hand1和hand2
+        this.hand1 = cc.find("Canvas/back/hand/hand1");
+
+        this.hand2 = cc.find("Canvas/back/hand/hand2");
+
+        this.hand = cc.find("Canvas/back/hand");
+    },
+
+    setTrack : function(track){
+        this.track = track;
+    },
+    // called every frame, uncomment this function to activate update callback
+    update: function (dt) {
+        //
+        switch(this.track){
+            case 0://直线
+                this.line(dt);
+                break;
+            case 1://sin
+                this.sin(dt);
+                break;
+            case 2:
+                this.changeVelocityLine(dt);
+                break;
+            case 3://折线
+                this.zhexian(dt);
+                break;
+
+        }
+
+        if(this.limit && this.noAction){
+            this.noAction = false;
+            this.fightHuman();
+        }
+
+    },
+    //各种轨迹的函数
+    //直线
+    line : function(dt){
+        if(!this.limit){
+            this.node.x -= 7;
+            if(this.node.x < -this.back.width/2 + this.node.width/2 + this.human.width/2 + this.leftPadding){
+                this.limit = true;
+            }
+        }
+        
+    },
+    sin : function(dt){
+        if(!this.limit){
+            var willX = this.node.x - 5;
+            var willY = Math.sin(willX/60)*70;
+            this.node.x = willX;
+            this.node.y = willY;
+            if(this.node.x < -this.back.width/2 + this.node.width/2 + this.human.width/2 + this.leftPadding){
+                this.limit = true;
+            }
+
+        }
+        
+    },
+    //改变速度轨迹（直线）
+    changeVelocityLine : function(dt){
+        if(!this.limit){
+            if(cc.game.changeVelocityLineFlag){//已经在加速,记录时间
+                if(!cc.game.changeVelocityLineTime){
+                        cc.game.changeVelocityLineTime = 0;
+                    }
+                if(cc.game.changeVelocityLineTime < 0.4){
+                    this.node.x -= 14;
+                    cc.game.changeVelocityLineTime += dt;
+                }else{
+                    cc.game.changeVelocityLineTime = 0;
+                    cc.game.changeVelocityLineFlag = false;
+                }
+                
+            }else{//没有加速，计算随机数，判断是否要加速
+                var randomC = Math.random();
+                if(randomC < 0.04){//加速1s
+                    cc.game.changeVelocityLineFlag = true;
+                }else{//不加速，正常飞行
+                    this.node.x -= 7;
+                }
+            }
+
+            if(this.node.x < -this.back.width/2 + this.node.width/2 + this.human.width/2 + this.leftPadding){
+                this.limit = true;
+            }
+        }
+    },
+
+    //折线
+    zhexian : function(dt){
+        if(!this.limit){
+            var willX = this.node.x - 6;
+            var willY = this.node.y + (3 * this.zhexianFlag);
+            if(Math.abs(willY - this.ypos) > this.zhexianLimit){
+                var willY = this.ypos + this.zhexianLimit * (this.zhexianFlag);
+                this.zhexianFlag = -(this.zhexianFlag);
+            }
+            this.node.x = willX;
+            this.node.y = willY;
+
+            if(this.node.x < -this.back.width/2 + this.node.width/2 + this.human.width/2 + this.leftPadding){
+                this.limit = true;
+            }
+        }
+        
+    },
+
+
+    
+    //超过左侧界限，朝人物飞翔
+    fightHuman : function(){
+        var humanX = this.human.x;
+        var humanY = this.human.y;
+        var fightAction = cc.moveTo(1,humanX,humanY);
+        var actionWithCall = cc.sequence(fightAction,cc.callFunc(this.actionFinish,this,null));
+        //计算角度
+        var disX = Math.abs(humanX - this.node.x);
+        var disY = Math.abs(humanY - this.node.y);
+        var rotation = Math.atan(disY/disX) * (180/Math.PI);
+        if(this.node.y > humanY){//在上，反转
+            this.node.rotation = -rotation;
+        }else if(this.node.y < humanY){//在下，正转
+            this.node.rotation = rotation;
+        }
+
+
+        this.node.runAction(actionWithCall);
+        
+    },
+
+    actionFinish : function(){
+        this.node.removeFromParent();
+    },
+
+    //碰撞回调
+    onCollisionEnter: function (other, self) {
+        var handX = this.hand.x;
+        var handy = this.hand.y;
+
+        //判断ohter(hand)的坐标，是否被咬
+        //只需判断蚊子是在手下边，中间，上边 即可区分
+        var wenzi = self.node;
+        var wenziX = wenzi.x;
+        var wenziY = wenzi.y;
+
+        var collisionHand = other.node;
+        var collisionHandX = collisionHand.x;
+        var collisionHandY = collisionHand.y;
+
+        var hand1X = this.hand1.x + handX;
+        var hand1Y = this.hand1.y + handy;
+
+        var hand2X = this.hand2.x + handX;
+        var hand2Y = this.hand2.y + handy;
+
+        var wenziLeftX =  wenziX - self.node.width/2;
+        var handRightX = hand1X + this.hand1.width/2;
+
+        if(Math.abs(handRightX - wenziLeftX) <= 10){//在手右侧,咬到手边缘
+            this.bite();
+        }else if(wenziY < hand2Y){//在手下
+            //手变大，变沉
+            this.bite();
+        }else if(hand2Y < wenziY < hand1Y){//手中
+            // this.actionFinish();
+            //判断是否拍手?
+            if(cc.game.papapa){
+                this.actionFinish();
+            }
+        }else{//在手上
+            //手变大，变沉
+            this.bite();
+        }
+
+    },
+
+    bite : function(dt){
+        var willScaleY1 = this.hand1.scaleY * 1.6;
+        var willScaleY2 = this.hand1.scaleY * 1.6;
+        willScaleY1 = willScaleY1 >= 3 ? 3 : willScaleY1;
+        willScaleY2 = willScaleY2 >= 3 ? 3 : willScaleY2;
+        this.hand1.scaleY = willScaleY1;
+        this.hand2.scaleY = willScaleY2;
+
+        var willWeight = cc.game.downMoveBy * 1.5;
+        willWeight = (willWeight > 6) ? 6 : willWeight;
+        cc.game.downMoveBy = willWeight;
+    }
+});

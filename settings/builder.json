@@ -1,0 +1,17 @@
+{
+  "excludeScenes": [],
+  "includeAnySDK": false,
+  "includeSdk": [
+    "anysdk"
+  ],
+  "orientation": {
+    "landscapeLeft": true,
+    "landscapeRight": true,
+    "portrait": false,
+    "upsideDown": false
+  },
+  "packageName": "org.cocos2d.ppp",
+  "startScene": "c5ffe36e-dcc8-4774-b46d-35b558044276",
+  "title": "ppp",
+  "webOrientation": "auto"
+}
