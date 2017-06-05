@@ -265,8 +265,8 @@
     "relativePath": "animations\\mouthnormal.anim"
   },
   "29f52784-2fca-467b-92e7-8fd9ef8c57b7": {
-    "asset": 1496372219527,
-    "meta": 1496384075146,
+    "asset": 1496623498436,
+    "meta": 1496623579288,
     "relativePath": "Scene"
   },
   "dc2e3644-c996-4e8a-a2db-7161177810cf": {
@@ -280,19 +280,9 @@
     "relativePath": "Scene\\playscene.fire"
   },
   "4734c20c-0db8-4eb2-92ea-e692f4d70934": {
-    "asset": 1496372219535,
-    "meta": 1496384075159,
+    "asset": 1496623498687,
+    "meta": 1496623579290,
     "relativePath": "Script"
-  },
-  "65bcb973-3e48-43c5-9b15-82c2442fc4f7": {
-    "asset": 1496372219529,
-    "meta": 1496384076980,
-    "relativePath": "Script\\back.js"
-  },
-  "c5ffe36e-dcc8-4774-b46d-35b558044276": {
-    "asset": 1496372219527,
-    "meta": 1496384077085,
-    "relativePath": "Scene\\splashscene.fire"
   },
   "a1ab0bb0-bb4f-4c9d-a4a7-4f26a309adc1": {
     "asset": 1496372219530,
@@ -319,14 +309,9 @@
     "meta": 1496384077292,
     "relativePath": "Script\\rolearm.js"
   },
-  "e7b9d4a8-526b-4df4-a9cd-c8ea18acf48f": {
-    "asset": 1496372219534,
-    "meta": 1496384077295,
-    "relativePath": "Script\\wenzi.js"
-  },
   "7b81d4e8-ec84-4716-968d-500ac1d78a54": {
-    "asset": 1496372219545,
-    "meta": 1496384077296,
+    "asset": 1496623498747,
+    "meta": 1496623579290,
     "relativePath": "Texture"
   },
   "f71d9a89-eb58-4429-ab0d-53e5cc0e2941": {
@@ -388,5 +373,25 @@
     "asset": 1496372219545,
     "meta": 1496384077475,
     "relativePath": "Texture\\wenzi1.png"
+  },
+  "65bcb973-3e48-43c5-9b15-82c2442fc4f7": {
+    "asset": 1496623498488,
+    "meta": 1496623517439,
+    "relativePath": "Script\\back.js"
+  },
+  "e7b9d4a8-526b-4df4-a9cd-c8ea18acf48f": {
+    "asset": 1496623498688,
+    "meta": 1496623517547,
+    "relativePath": "Script\\wenzi.js"
+  },
+  "c5ffe36e-dcc8-4774-b46d-35b558044276": {
+    "asset": 1496623498436,
+    "meta": 1496623517560,
+    "relativePath": "Scene\\splashscene.fire"
+  },
+  "b646147f-8f42-4ee6-8879-82b505dfddb1": {
+    "asset": 1496623498746,
+    "meta": 1496623517577,
+    "relativePath": "Texture\\jiantou2.png"
   }
 }
