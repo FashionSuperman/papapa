@@ -15,6 +15,10 @@ cc.Class({
             type:cc.Node,
             default:null
         },
+        panum : {
+            type : cc.Label,
+            default : null
+        },
         lineX:10
     },
 
@@ -43,6 +47,7 @@ cc.Class({
         var wenziCom = wenzi.getComponent("wenzi");
         wenziCom.human = this.human;
         wenziCom.back = this.back;
+        wenziCom.panum = this.panum;
 
         //TODO 随机产生轨迹
         // var track = (cc.game.temp++)%4;

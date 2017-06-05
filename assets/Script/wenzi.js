@@ -31,6 +31,11 @@ cc.Class({
         hand : {
             type:cc.Node,
             default:null
+        },
+
+        panum : {
+            type : cc.Label,
+            default : null
         }
     },
 
@@ -171,8 +176,20 @@ cc.Class({
         
     },
 
+    /**
+     * 蚊子被拍死,计分
+     */
     actionFinish : function(){
+        //将拍死的蚊子移除
         this.node.removeFromParent();
+        //计分
+        var preNum = this.panum.string;
+        if(preNum){
+           this.panum.string = parseInt(preNum) + 1;
+        }else{
+            this.panum.string = 1;
+        }
+        
     },
 
     //碰撞回调
