@@ -190,6 +190,7 @@ cc.Class({
         } else {
             this.panum.string = 1;
         }
+        cc.game.panum = parseInt(this.panum.string);
     },
 
     //碰撞回调

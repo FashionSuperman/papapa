@@ -375,8 +375,8 @@
     "relativePath": "Texture\\wenzi1.png"
   },
   "c5ffe36e-dcc8-4774-b46d-35b558044276": {
-    "asset": 1496625745940,
-    "meta": 1496625745947,
+    "asset": 1496629718969,
+    "meta": 1496629718976,
     "relativePath": "Scene\\splashscene.fire"
   },
   "b646147f-8f42-4ee6-8879-82b505dfddb1": {
@@ -384,14 +384,14 @@
     "meta": 1496623517577,
     "relativePath": "Texture\\jiantou2.png"
   },
-  "65bcb973-3e48-43c5-9b15-82c2442fc4f7": {
-    "asset": 1496625380189,
-    "meta": 1496625712541,
-    "relativePath": "Script\\back.js"
-  },
   "e7b9d4a8-526b-4df4-a9cd-c8ea18acf48f": {
-    "asset": 1496625662585,
-    "meta": 1496625712541,
+    "asset": 1496629676243,
+    "meta": 1496629684581,
     "relativePath": "Script\\wenzi.js"
+  },
+  "65bcb973-3e48-43c5-9b15-82c2442fc4f7": {
+    "asset": 1496634695142,
+    "meta": 1496640190099,
+    "relativePath": "Script\\back.js"
   }
 }

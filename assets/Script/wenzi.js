@@ -185,11 +185,11 @@ cc.Class({
         //计分
         var preNum = this.panum.string;
         if(preNum){
-           this.panum.string = parseInt(preNum) + 1;
+            this.panum.string = parseInt(preNum) + 1;
         }else{
             this.panum.string = 1;
         }
-        
+        cc.game.panum = parseInt(this.panum.string)
     },
 
     //碰撞回调

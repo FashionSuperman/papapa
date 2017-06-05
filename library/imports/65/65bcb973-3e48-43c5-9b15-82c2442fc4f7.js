@@ -43,6 +43,19 @@ cc.Class({
     // },
 
     spawn: function spawn() {
+
+        //根据分数判断是否 发射 2连啪 3连啪 4连啪
+        //TODO 
+        if (cc.game.panum && cc.game.panum != 0) {
+            if (cc.game.panum % 6 == 0) {//发射 2连啪
+
+            } else if (cc.game.panum % 12 == 0) {//发射 3连啪
+
+            } else if (cc.game.panum % 24 == 0) {//发射 4连啪
+
+            }
+        }
+
         var wenzi = cc.instantiate(this.wenziPrefab);
 
         var wenziCom = wenzi.getComponent("wenzi");
