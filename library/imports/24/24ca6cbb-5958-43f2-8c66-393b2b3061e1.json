@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "mouthsmall",
+    "texture": "61ada30a-f9a7-4e58-9596-649bd6b39d5d",
+    "atlas": "",
+    "rect": [
+      40,
+      44,
+      21,
+      18
+    ],
+    "offset": [
+      0.5,
+      -3
+    ],
+    "originalSize": [
+      100,
+      100
+    ]
+  }
+}

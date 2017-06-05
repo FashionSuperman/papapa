@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "smalleye2",
+    "texture": "457846f7-e980-4ae8-84c6-717e736ae467",
+    "atlas": "",
+    "rect": [
+      42,
+      38,
+      21,
+      23
+    ],
+    "offset": [
+      2.5,
+      0.5
+    ],
+    "originalSize": [
+      100,
+      100
+    ]
+  }
+}

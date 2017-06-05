@@ -1,0 +1,31 @@
+{
+  "version": 3,
+  "sources": [
+    "unknown"
+  ],
+  "names": [
+    "cc",
+    "Class",
+    "extends",
+    "Component",
+    "properties",
+    "hand",
+    "type",
+    "Node",
+    "default",
+    "onLoad",
+    "node",
+    "on",
+    "EventType",
+    "TOUCH_START",
+    "event",
+    "game",
+    "papapa",
+    "getComponent"
+  ],
+  "mappings": ";;AAAAA,GAAGC,KAAH,CAAS;AACLC,aAASF,GAAGG,SADP;;AAGLC,gBAAY;AACR;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACAC,cAAK;AACDC,kBAAKN,GAAGO,IADP;AAEDC,qBAAQ;AAFP;AAXG,KAHP;;AAoBL;AACAC,YAAQ,kBAAY;AAChB;AACA,aAAKC,IAAL,CAAUC,EAAV,CAAaX,GAAGO,IAAH,CAAQK,SAAR,CAAkBC,WAA/B,EAA4C,UAAUC,KAAV,EAAiB;AACzDd,eAAGe,IAAH,CAAQC,MAAR,GAAiB,IAAjB;AACA,iBAAKX,IAAL,CAAUY,YAAV,CAAuB,MAAvB,EAA+BD,MAA/B;AACH,SAHD,EAGG,IAHH;AAIH;;AA3BI,CAAT",
+  "file": "unknown",
+  "sourcesContent": [
+    "cc.Class({\r\n    extends: cc.Component,\r\n\r\n    properties: {\r\n        // foo: {\r\n        //    default: null,      // The default value will be used only when the component attaching\r\n        //                           to a node for the first time\r\n        //    url: cc.Texture2D,  // optional, default is typeof default\r\n        //    serializable: true, // optional, default is true\r\n        //    visible: true,      // optional, default is true\r\n        //    displayName: 'Foo', // optional\r\n        //    readonly: false,    // optional, default is false\r\n        // },\r\n        // ...\r\n        hand:{\r\n            type:cc.Node,\r\n            default:null\r\n        }\r\n    },\r\n\r\n    // use this for initialization\r\n    onLoad: function () {\r\n        // 使用枚举类型来注册\r\n        this.node.on(cc.Node.EventType.TOUCH_START, function (event) {\r\n            cc.game.papapa = true;\r\n            this.hand.getComponent(\"hand\").papapa();\r\n        }, this);\r\n    },\r\n\r\n    // called every frame, uncomment this function to activate update callback\r\n    // update: function (dt) {\r\n\r\n    // },\r\n});\r\n"
+  ]
+}
