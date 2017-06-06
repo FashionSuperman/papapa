@@ -49,17 +49,23 @@ cc.Class({
         if (cc.game.panum && cc.game.panum != 0) {
             if (cc.game.panum % 6 == 0) {
                 //发射 2连啪
+                //记录当前的生成蚊子数
+                cc.game.spawnNum = 2;
                 this.spawnOne();
                 this.schedule(this.spawnOne, 1);
                 return;
             } else if (cc.game.panum % 12 == 0) {
                 //发射 3连啪
+                //记录当前的生成蚊子数
+                cc.game.spawnNum = 3;
                 this.spawnOne();
                 this.schedule(this.spawnOne, 1);
                 this.schedule(this.spawnOne, 2);
                 return;
             } else if (cc.game.panum % 24 == 0) {
                 //发射 4连啪
+                //记录当前的生成蚊子数
+                cc.game.spawnNum = 4;
                 this.spawnOne();
                 this.schedule(this.spawnOne, 1);
                 this.schedule(this.spawnOne, 2);
@@ -86,6 +92,9 @@ cc.Class({
         // wenziCom.setTrack(track);
         // this.node.addChild(wenzi);
 
+
+        //记录当前的生成蚊子数
+        cc.game.spawnNum = 1;
         this.spawnOne();
     },
 

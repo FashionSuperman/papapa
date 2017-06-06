@@ -384,14 +384,14 @@
     "meta": 1496623517577,
     "relativePath": "Texture\\jiantou2.png"
   },
-  "e7b9d4a8-526b-4df4-a9cd-c8ea18acf48f": {
-    "asset": 1496629676243,
-    "meta": 1496629684581,
-    "relativePath": "Script\\wenzi.js"
-  },
   "65bcb973-3e48-43c5-9b15-82c2442fc4f7": {
-    "asset": 1496646055155,
-    "meta": 1496646089818,
+    "asset": 1496712862693,
+    "meta": 1496713795591,
     "relativePath": "Script\\back.js"
+  },
+  "e7b9d4a8-526b-4df4-a9cd-c8ea18acf48f": {
+    "asset": 1496713760507,
+    "meta": 1496713795592,
+    "relativePath": "Script\\wenzi.js"
   }
 }

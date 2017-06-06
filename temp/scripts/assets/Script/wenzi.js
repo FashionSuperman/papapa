@@ -162,6 +162,8 @@ cc.Class({
 
     //超过左侧界限，朝人物飞翔
     fightHuman: function fightHuman() {
+        cc.game.currentPaSpawnNum = 0;
+
         var humanX = this.human.x;
         var humanY = this.human.y;
         var fightAction = cc.moveTo(1, humanX, humanY);
@@ -223,21 +225,53 @@ cc.Class({
 
         if (Math.abs(handRightX - wenziLeftX) <= 10) {
             //在手右侧,咬到手边缘
+            cc.game.currentPaSpawnNum = 0;
             this.bite();
         } else if (wenziY < hand2Y) {
             //在手下
             //手变大，变沉
+            cc.game.currentPaSpawnNum = 0;
             this.bite();
         } else if (hand2Y < wenziY < hand1Y) {
             //手中
             // this.actionFinish();
             //判断是否拍手?
             if (cc.game.papapa) {
+                //拍死
+                //判断是否是多连啪,如果是,运行动画效果
+
+                if (cc.game.spawnNum > 1) {
+                    cc.game.currentPaSpawnNum = !cc.game.currentPaSpawnNum ? 0 : cc.game.currentPaSpawnNum; //当前的多啪  啪死的个数
+
+                    if (cc.game.currentPaSpawnNum = cc.game.spawnNum) {
+                        //产生了多啪效果
+                        cc.game.currentPaSpawnNum = 0;
+                        switch (cc.game.spawnNum) {
+                            case 2:
+                                //TODO 产生2连啪效果
+
+                                break;
+                            case 3:
+                                //TODO 产生3连啪效果
+
+                                break;
+                            case 4:
+                                //TODO 产生4连啪效果
+                                break;
+                            default:
+                                break;
+                        }
+                    } else {
+                        cc.game.currentPaSpawnNum++;
+                    }
+                }
+
                 this.actionFinish();
             }
         } else {
             //在手上
             //手变大，变沉
+            cc.game.currentPaSpawnNum = 0;
             this.bite();
         }
     },
