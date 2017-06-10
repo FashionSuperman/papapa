@@ -18,6 +18,8 @@
     "playNormal",
     "update",
     "dt",
+    "game",
+    "anistop",
     "leftRoleAni",
     "node",
     "getComponent",
@@ -25,9 +27,9 @@
     "mouthAni",
     "play"
   ],
-  "mappings": ";;AAAAA,GAAGC,KAAH,CAAS;AACLC,aAASF,GAAGG,SADP;;AAGLC,gBAAY;AACRC,eAAM;AACFC,kBAAKN,GAAGO,IADN;AAEFC,qBAAQ;AAFN;AADE,KAHP;;AAUL;AACAC,YAAQ,kBAAY;AAChB,aAAKC,QAAL,CAAc,YAAW;AACrB,iBAAKC,UAAL;AACH,SAFD,EAEG,CAFH;AAGH,KAfI;;AAiBL;AACAC,YAAQ,gBAAUC,EAAV,EAAc,CAErB,CApBI;;AAsBLF,gBAAa,sBAAU;AACnB,YAAIG,cAAc,KAAKC,IAAL,CAAUC,YAAV,CAAuBhB,GAAGiB,SAA1B,CAAlB;;AAEA,YAAIC,WAAW,KAAKb,KAAL,CAAWW,YAAX,CAAwBhB,GAAGiB,SAA3B,CAAf;AACAC,iBAASC,IAAT,CAAc,aAAd;AACAL,oBAAYK,IAAZ,CAAiB,QAAjB;AACH;AA5BI,CAAT",
+  "mappings": ";;AAAAA,GAAGC,KAAH,CAAS;AACLC,aAASF,GAAGG,SADP;;AAGLC,gBAAY;AACRC,eAAM;AACFC,kBAAKN,GAAGO,IADN;AAEFC,qBAAQ;AAFN;AADE,KAHP;;AAUL;AACAC,YAAQ,kBAAY;AAChB,aAAKC,QAAL,CAAc,YAAW;AACrB,iBAAKC,UAAL;AACH,SAFD,EAEG,CAFH;AAGH,KAfI;;AAiBL;AACAC,YAAQ,gBAAUC,EAAV,EAAc,CAErB,CApBI;;AAsBLF,gBAAa,sBAAU;AACnB,YAAG,CAACX,GAAGc,IAAH,CAAQC,OAAZ,EAAoB;AAChB,gBAAIC,cAAc,KAAKC,IAAL,CAAUC,YAAV,CAAuBlB,GAAGmB,SAA1B,CAAlB;;AAEA,gBAAIC,WAAW,KAAKf,KAAL,CAAWa,YAAX,CAAwBlB,GAAGmB,SAA3B,CAAf;AACAC,qBAASC,IAAT,CAAc,aAAd;AACAL,wBAAYK,IAAZ,CAAiB,QAAjB;AACH;AAGJ;AAhCI,CAAT",
   "file": "unknown",
   "sourcesContent": [
-    "cc.Class({\r\n    extends: cc.Component,\r\n\r\n    properties: {\r\n        mouth:{\r\n            type:cc.Node,\r\n            default:null\r\n        }\r\n    },\r\n\r\n    // use this for initialization\r\n    onLoad: function () {\r\n        this.schedule(function() {\r\n            this.playNormal();\r\n        }, 3);\r\n    },\r\n\r\n    // called every frame\r\n    update: function (dt) {\r\n\r\n    },\r\n\r\n    playNormal : function(){\r\n        var leftRoleAni = this.node.getComponent(cc.Animation);\r\n\r\n        var mouthAni = this.mouth.getComponent(cc.Animation);\r\n        mouthAni.play(\"mouthnormal\");\r\n        leftRoleAni.play(\"normal\");\r\n    }\r\n});\r\n"
+    "cc.Class({\r\n    extends: cc.Component,\r\n\r\n    properties: {\r\n        mouth:{\r\n            type:cc.Node,\r\n            default:null\r\n        }\r\n    },\r\n\r\n    // use this for initialization\r\n    onLoad: function () {\r\n        this.schedule(function() {\r\n            this.playNormal();\r\n        }, 1);\r\n    },\r\n\r\n    // called every frame\r\n    update: function (dt) {\r\n\r\n    },\r\n\r\n    playNormal : function(){\r\n        if(!cc.game.anistop){\r\n            var leftRoleAni = this.node.getComponent(cc.Animation);\r\n\r\n            var mouthAni = this.mouth.getComponent(cc.Animation);\r\n            mouthAni.play(\"mouthnormal\");\r\n            leftRoleAni.play(\"normal\");\r\n        }\r\n\r\n       \r\n    }\r\n});\r\n"
   ]
 }

@@ -12,7 +12,7 @@ cc.Class({
     onLoad: function () {
         this.schedule(function() {
             this.playNormal();
-        }, 3);
+        }, 1);
     },
 
     // called every frame
@@ -21,10 +21,14 @@ cc.Class({
     },
 
     playNormal : function(){
-        var leftRoleAni = this.node.getComponent(cc.Animation);
+        if(!cc.game.anistop){
+            var leftRoleAni = this.node.getComponent(cc.Animation);
 
-        var mouthAni = this.mouth.getComponent(cc.Animation);
-        mouthAni.play("mouthnormal");
-        leftRoleAni.play("normal");
+            var mouthAni = this.mouth.getComponent(cc.Animation);
+            mouthAni.play("mouthnormal");
+            leftRoleAni.play("normal");
+        }
+
+       
     }
 });

@@ -12,7 +12,11 @@ cc.Class({
             type:cc.Node,
             default:null
         },
-        leftPadding : 60,
+        mainrole : {
+            type:cc.Node,
+            default:null
+        },
+        leftPadding : 80,
         limit : false,
         ypos:0,
         zhexianFlag:1,
@@ -36,6 +40,22 @@ cc.Class({
         panum : {
             type : cc.Label,
             default : null
+        },
+        banana : {
+            type:cc.Node,
+            default:null
+        },
+        eyeLeft : {
+            type:cc.Node,
+            default:null
+        },
+        eyeRight : {
+            type:cc.Node,
+            default:null
+        },
+        mouth : {
+            type:cc.Node,
+            default:null
         }
     },
 
@@ -44,12 +64,23 @@ cc.Class({
         this.noAction = true;
         this.ypos = this.node.y;
 
+        this.human = cc.find("Canvas/back/mainrole/role_body");
+
+        this.mainrole = cc.find("Canvas/back/mainrole");
+
         //获取hand1和hand2
         this.hand1 = cc.find("Canvas/back/hand/hand1");
 
         this.hand2 = cc.find("Canvas/back/hand/hand2");
 
         this.hand = cc.find("Canvas/back/hand");
+
+        this.banana = cc.find("Canvas/back/mainrole/banana");
+
+        this.eyeLeft = cc.find("Canvas/back/mainrole/role_body/role_eye_left");
+        this.eyeRight = cc.find("Canvas/back/mainrole/role_body/role_eye_right");
+
+        this.mouth = cc.find("Canvas/back/mainrole/role_body/mouth");
     },
 
     setTrack : function(track){
@@ -159,10 +190,14 @@ cc.Class({
     fightHuman : function(){
         cc.game.currentPaSpawnNum = 0;
 
-        var humanX = this.human.x;
-        var humanY = this.human.y;
+        // var humanX = this.human.x;
+        // var humanY = this.human.y;
+
+        var humanX = this.mainrole.x;
+        var humanY = this.mainrole.y;
+
         var fightAction = cc.moveTo(1,humanX,humanY);
-        var actionWithCall = cc.sequence(fightAction,cc.callFunc(this.actionFinish,this,null));
+        var actionWithCall = cc.sequence(fightAction,cc.callFunc(this.removeWezi,this,null));
         //计算角度
         var disX = Math.abs(humanX - this.node.x);
         var disY = Math.abs(humanY - this.node.y);
@@ -175,7 +210,7 @@ cc.Class({
 
 
         this.node.runAction(actionWithCall);
-        
+        // this.scheduleOnce(this.changeAniStatus, 0.4);
     },
 
     /**
@@ -192,6 +227,33 @@ cc.Class({
             this.panum.string = 1;
         }
         cc.game.panum = parseInt(this.panum.string)
+    },
+
+
+    removeWezi : function(){
+        //将拍死的蚊子移除
+        cc.game.anistop = true;
+
+        this.node.removeFromParent();
+        var bananaAni = this.banana.getComponent(cc.Animation);
+        var eyeLeftAni = this.eyeLeft.getComponent(cc.Animation);
+        var eyeRightAni = this.eyeRight.getComponent(cc.Animation);
+        var mouthAni = this.mouth.getComponent(cc.Animation);
+
+        
+
+        bananaAni.play("bananaRotation");
+        eyeLeftAni.play("eyeleft");
+        eyeRightAni.play("eyeright");
+        mouthAni.play("mouth");
+        
+        
+        
+
+    },
+
+    changeAniStatus : function(dt){
+        cc.game.anistop = false;
     },
 
     //碰撞回调
